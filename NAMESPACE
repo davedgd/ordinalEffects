@@ -1,1 +1,7 @@
 exportPattern("^[[:alpha:]]+")
+
+import(effects)
+import(ordinal)
+import(reshape2)
+import(ggplot2)
+import(MASS)
