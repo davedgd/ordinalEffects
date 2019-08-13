@@ -43,11 +43,11 @@ BuildOrdinalPlotData <- function(theEffect, theModel, theData, unscale = TRUE, u
   # organize data.frame for ggplot2
   colCount <- (ncol(plotDat) - length(theTerms)) / 3
   fit <- melt(plotDat[, 1:(length(theTerms) + colCount)], id.vars = theTerms, variable.name = theEffect$response, value.name = "prob")
-  fit[, theEffect$response] <- as.numeric(fit[, theEffect$response])
+  fit[, theEffect$response] <- gsub("prob.X", "", fit[, theEffect$response])
   upper <- melt(plotDat[, c(theTerms, grep("U.", names(plotDat), value = TRUE, fixed = TRUE))], id.vars = theTerms, variable.name = theEffect$response, value.name = "prob")
   lower <- melt(plotDat[, c(theTerms, grep("L.", names(plotDat), value = TRUE, fixed = TRUE))], id.vars = theTerms, variable.name = theEffect$response, value.name = "prob")
   plotDat <- data.frame(fit, upper = upper$prob, lower = lower$prob)
-  fit[, theEffect$response] <- factor(fit[, theEffect$response])
+  plotDat[, theEffect$response] <- ordered(fit[, theEffect$response], levels = levels(theData[, theEffect$response]))
 
   head(plotDat)
 
