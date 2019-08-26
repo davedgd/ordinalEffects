@@ -140,3 +140,10 @@ OrdinalPlot <- function(theEffect, theModel, theData, unscale = TRUE, render = T
   return(thePlot)
 
 }
+
+# Calculate scaled xlevels convenience function
+FindScaledValues <- function (scaledVariable, rawValue) {
+
+  (rawValue - attr(scaledVariable, "scaled:center"))/attr(scaledVariable, "scaled:scale")
+
+}
