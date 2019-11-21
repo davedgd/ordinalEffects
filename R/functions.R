@@ -47,7 +47,25 @@ BuildOrdinalPlotData <- function(theEffect, theModel, theData, unscale = TRUE, u
   upper <- melt(plotDat[, c(theTerms, grep("U.", names(plotDat), value = TRUE, fixed = TRUE))], id.vars = theTerms, variable.name = theEffect$response, value.name = "prob")
   lower <- melt(plotDat[, c(theTerms, grep("L.", names(plotDat), value = TRUE, fixed = TRUE))], id.vars = theTerms, variable.name = theEffect$response, value.name = "prob")
   plotDat <- data.frame(fit, upper = upper$prob, lower = lower$prob)
-  plotDat[, theEffect$response] <- ordered(fit[, theEffect$response], levels = levels(theData[, theEffect$response]))
+
+  # clean up labels
+
+  calcRuns <- rle(fit[[theEffect$response]])
+  values <- calcRuns$values
+  lengths <- calcRuns$lengths
+  ends <- cumsum(lengths)
+
+  x <- data.frame(
+    min = ends - lengths + 1,
+    max = ends,
+    label = values,
+    clean_label = levels(theData[[theEffect$response]]),
+    stringsAsFactors = FALSE
+  )
+
+  plotDat[[theEffect$response]] <- ordered(fit[[theEffect$response]],
+                                           levels = x$label,
+                                           labels = x$clean_label)
 
   head(plotDat)
 
