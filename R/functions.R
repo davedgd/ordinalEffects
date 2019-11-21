@@ -49,12 +49,10 @@ BuildOrdinalPlotData <- function(theEffect, theModel, theData, unscale = TRUE, u
   plotDat <- data.frame(fit, upper = upper$prob, lower = lower$prob)
 
   # clean up labels
-
   calcRuns <- rle(fit[[theEffect$response]])
   values <- calcRuns$values
   lengths <- calcRuns$lengths
   ends <- cumsum(lengths)
-
   x <- data.frame(
     min = ends - lengths + 1,
     max = ends,
@@ -62,7 +60,6 @@ BuildOrdinalPlotData <- function(theEffect, theModel, theData, unscale = TRUE, u
     clean_label = levels(theData[[theEffect$response]]),
     stringsAsFactors = FALSE
   )
-
   plotDat[[theEffect$response]] <- ordered(fit[[theEffect$response]],
                                            levels = x$label,
                                            labels = x$clean_label)
