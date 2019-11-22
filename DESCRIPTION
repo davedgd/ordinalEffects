@@ -1,7 +1,7 @@
 Package: ordinalEffects
 Type: Package
 Title: Improved Effect Plots for Ordinal Models
-Version: 0.1.0
+Version: 0.1.1
 Author: David G. Dobolyi
 Maintainer: David G. Dobolyi <dd2es@virginia.edu>
 Description: More about what it does (maybe more than one line)
