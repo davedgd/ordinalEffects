@@ -148,7 +148,7 @@ BuildOrdinalPlot <- function (PlotDat, render = FALSE) {
 # wrapper function to generate a plot
 OrdinalPlot <- function(theEffect, theModel, theData, unscale = TRUE, render = TRUE) {
 
-  plotDat <- BuildOrdinalPlotData(theEffect, theModel, theData, unscale = TRUE)
+  plotDat <- BuildOrdinalPlotData(theEffect, theModel, theData, unscale = unscale)
   message("\nPlot Code:\n")
   thePlot <- BuildOrdinalPlot(plotDat, render = render)
 
@@ -156,9 +156,19 @@ OrdinalPlot <- function(theEffect, theModel, theData, unscale = TRUE, render = T
 
 }
 
-# Calculate scaled xlevels convenience function
+# calculate scaled xlevels convenience function
 FindScaledValues <- function (scaledVariable, rawValue) {
 
   (rawValue - attr(scaledVariable, "scaled:center"))/attr(scaledVariable, "scaled:scale")
 
 }
+
+# -------
+# Example
+# -------
+
+# adapted from ?clmm
+mm1 <- clmm(SURENESS ~ PROD + (1|RESP) + (1|RESP:PROD), data = soup,
+            threshold = "flexible")
+
+OrdinalPlot(theEffect = effect("PROD", mm1), theModel = mm1, theData = soup)
