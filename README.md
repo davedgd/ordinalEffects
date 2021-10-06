@@ -25,7 +25,7 @@ mm1 <- clmm(SURENESS ~ PROD + (1|RESP) + (1|RESP:PROD),
 
 # using effects
 plot(Effect("PROD", mm1))
-ggsave("p1.png", width = 5, height = 5)
+ggsave("p2.png", width = 5, height = 3.5)
 ```
 ![effects](plots/p1.png?raw=true "effects")
 
