@@ -29,7 +29,7 @@ ggsave("p1.png", width = 5, height = 5)
 ```
 ![effects](plots/p1.png?raw=true "effects")
 
-```
+``` r
 # using ordinalEffects
 ordinalEffects::OrdinalPlot(Effect("PROD", mm1), mm1, soup)
 ggsave("p2.png", width = 5, height = 5)
