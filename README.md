@@ -24,15 +24,16 @@ mm1 <- clmm(SURENESS ~ PROD + (1|RESP) + (1|RESP:PROD),
             threshold = "flexible")
 
 # using effects
+png(file = "p1.png")
 plot(Effect("PROD", mm1))
-ggsave("p2.png", width = 5, height = 3.5)
+dev.off()
 ```
 ![effects](plots/p1.png?raw=true "effects")
 
 ``` r
 # using ordinalEffects
 ordinalEffects::OrdinalPlot(Effect("PROD", mm1), mm1, soup)
-ggsave("p2.png", width = 5, height = 5)
+ggsave("p2.png", width = 5, height = 3.5)
 ```
 ![ordinalEffects](plots/p2.png?raw=true "ordinalEffects")
 ```
