@@ -107,7 +107,7 @@ BuildOrdinalPlotData <- function(theEffect, theModel, theData, unscale = TRUE, u
 }
 
 # build ordinal plot
-BuildOrdinalPlot <- function (PlotDat, render = FALSE) {
+BuildOrdinalPlot <- function(PlotDat, render = FALSE) {
 
   pdCall <- expression(
     pd <- position_dodge(0.25)
@@ -157,7 +157,7 @@ OrdinalPlot <- function(theEffect, theModel, theData, unscale = TRUE, render = T
 }
 
 # calculate scaled xlevels convenience function
-FindScaledValues <- function (scaledVariable, rawValue) {
+FindScaledValues <- function(scaledVariable, rawValue) {
 
   (rawValue - attr(scaledVariable, "scaled:center"))/attr(scaledVariable, "scaled:scale")
 
