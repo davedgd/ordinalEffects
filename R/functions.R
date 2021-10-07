@@ -162,13 +162,3 @@ FindScaledValues <- function (scaledVariable, rawValue) {
   (rawValue - attr(scaledVariable, "scaled:center"))/attr(scaledVariable, "scaled:scale")
 
 }
-
-# -------
-# Example
-# -------
-
-# adapted from ?clmm
-mm1 <- clmm(SURENESS ~ PROD + (1|RESP) + (1|RESP:PROD), data = soup,
-            threshold = "flexible")
-
-OrdinalPlot(theEffect = effect("PROD", mm1), theModel = mm1, theData = soup)
